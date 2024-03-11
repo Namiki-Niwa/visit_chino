@@ -1,0 +1,344 @@
+@use "parts";
+@use "breakpoints";
+
+// ----common-------------------------------
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+html {
+  scroll-behavior: smooth;
+}
+body {
+  // line-height: parts.$line-hight-base;
+  font-family: parts.$font-family-base;
+  font-size: parts.$font-size-base;
+  margin: 0 auto;
+  position: relative;
+  background-color: #000000;
+  a {
+    text-decoration: none;
+    color: #000000;
+  }
+  img {
+    width: 100%;
+  }
+}
+.inner {
+  max-width: parts.$width-inner; //1080px設定
+  // width: 1080px;
+  padding-inline: 10px;
+  margin-inline: auto;
+}
+.pc-hidden{
+  display: none;
+  @include breakpoints.mq(sp) {
+   display: block; 
+  }
+}
+// -----------------------------------
+.header {
+  position: fixed;
+  width: 100%;
+  z-index: 1;
+  background-color: rgba(255, 255, 255, 0.3);
+  box-shadow: inset 0px 0px 10px 0px rgba(0, 0, 0, 0.3);
+}
+
+.header__inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.header__bg {
+  background-image: url(../img/firework/firework-small.jpg);
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  width: 100vw;
+  height: 100vh;
+  position: relative;
+  margin-bottom: 100px;
+
+  @include breakpoints.mq(pc) {
+   margin-bottom: 30px;
+  }
+}
+.header__title {
+  a {
+    text-decoration: none;
+    color: #000000;
+    font-size: 30px;
+  }
+}
+
+.header__nav {
+ @include breakpoints.mq(pc-lg) {
+  display: none; 
+ }
+}
+
+.header__lists{
+  display: flex;
+  gap: 20px;
+  max-width: 1080px;
+  list-style: none;
+}
+
+.header__list{
+  // margin-bottom:20px;
+  
+  a {
+    position: relative;
+    text-decoration: none;
+    color: #000000;
+    font-size: 20px;
+    padding: 6px;
+    border-radius: 5px;
+    transition: all 0.5s 0s ease;/*transitionの記述を追加*/
+
+
+    &::after {
+      content: '';
+      /*絶対配置で線の位置を決める*/
+      position: absolute;
+      bottom: 0;
+      left: 10%;
+      /*線の形状*/
+      width: 80%;
+      height: 1px;
+      // background:#0481A2;
+      background-color: #000000;
+      /*アニメーションの指定*/
+      transition: all .3s;
+      transform: scale(0, 1);/*X方向0、Y方向1*/
+      transform-origin: center top;/*上部中央基点*/
+    }
+    
+    &:hover {
+      opacity: 50%;
+
+      &::after{
+        transform: scale(1, 1);
+      }
+    }
+  }
+}
+.keyphrase {
+  color: white;
+  text-align: center;
+  white-space: nowrap;
+  position: absolute;
+  font-family: parts.$font-family-title;
+  font-size: 60px;
+  padding: 5px 20px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -webkit-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+
+  @include breakpoints.mq(pc-lg) {
+   font-size: 50px; 
+   padding: initial;
+   
+  }
+}
+
+// firework
+.firework {
+  line-height: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  background-color: #fff;
+  color: #000000;
+  padding: 10px 20px;
+  margin-bottom: 100px;
+
+  @include breakpoints.mq(sp) {
+   flex-direction: column; 
+   margin-bottom: 20px;
+  }
+}
+
+.firework__daily-img {
+  width: 45%;
+
+  @include breakpoints.mq(sp) {
+   width: 100%; 
+   margin-bottom: 12px;
+  }
+
+  img {
+    width: 100%;
+  }
+}
+
+.firework__detail {
+  width: 55%;
+
+  @include breakpoints.mq(sp) {
+    width: 100%; 
+   }
+}
+
+.firework__date {
+  margin-bottom: 20px;
+}
+
+.firework__title {
+  font-size: 30px;
+  margin-bottom: 30px;
+
+  span {
+    color: red;
+    font-weight: bold;
+  }
+}
+
+.firework__text {
+  font-size: 13px;
+  line-height: 2;
+  padding-bottom: 30px;
+}
+
+.firework__more {
+  // background-color: #000000;
+  // color: #fff;
+  a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    background-color: #000000;
+    font-size: 10px;
+    width: 200px;
+    height: 50px;
+    border-radius: 3px;
+    box-shadow: 0px 5px 15px 0px rgba(9, 9, 9, 0.35);
+    margin-inline: auto;
+  }
+}
+
+// info
+.info {
+  background-color: #fff;
+  padding-bottom: 100px;
+}
+
+.info__inner {}
+
+.info__title {
+text-align: center;
+padding-block: 100px;  
+color: #000000;
+font-size: 40px;
+}
+
+.info__wraper {
+  display: flex;
+  justify-content: center;
+  gap: 80px;
+  
+  @include breakpoints.mq(sp) {
+   gap: 10px;
+   flex-wrap: wrap; 
+  }
+}
+
+.info__icon-box {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  a {
+    display: inline-block;
+    width: 70px;
+    height: 70px;
+    background-color: #000000;
+    padding: 15px;
+
+    @include breakpoints.mq(sp) {
+     width: 60px;
+     height: 60px; 
+    }
+  }
+
+  img {
+    width: 100%;
+    // background-color: #000000;
+  }
+}
+
+
+
+
+// footer
+.footer {
+  position: relative;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  background-color: #000000;
+}
+.footer__container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.footer__lists {
+  display: flex;
+  gap: 20px;
+  list-style: none;
+
+  @include breakpoints.mq(sp) {
+   gap: 10px;
+   font-size: 15px; 
+  }
+}
+.footer__list {
+
+  a {
+    position: relative;
+    color: #ffffff;
+    padding-bottom: 10px;
+    // transition: all 0.5s 0s ease;/*transitionの記述を追加*/
+
+    &::after {
+      content: '';
+      /*絶対配置で線の位置を決める*/
+      position: absolute;
+      bottom: 0;
+      left: 10%;
+      /*線の形状*/
+      width: 80%;
+      height: 1px;
+      // background:#0481A2;
+      background-color: #ffffff;
+      /*アニメーションの指定*/
+      transition: all .3s;
+      transform: scale(0, 1);/*X方向0、Y方向1*/
+      transform-origin: center top;/*上部中央基点*/
+
+    }
+    &:hover::after {
+      transform: scale(1, 1);/*X方向0、Y方向1*/
+    }
+  }
+}
+
+
+
+.footer-right {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+}
+.footer__sns {
+  width: 30px;
+  height: 30px;
+}

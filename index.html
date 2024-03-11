@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- 検索にあたらないようにするメタ設定 -->
+  <meta name="robots" content="noindex">
+  <title>Visit Chino</title>
+  <meta name="description" content="長野県茅野市の観光案内サイトです。">
+  <!-- ファヴィコン設定 -->
+  <link rel="shortcut icon" href="./img/favicon/favicon.png" type="image/x-icon">
+
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css">
+  <!-- Google Font読み込み -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <!-- swiper CDNの読み込み -->
+  <link href="https://fonts.googleapis.com/css2?family=Kaisei+HarunoUmi&family=Kaushan+Script&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
+  <!-- reset.cssの読み込み -->
+  <link rel="stylesheet" href="./css/reset.css">
+  <!-- slick cssの読み込み -->
+  <link rel="stylesheet" href="/css/slick.css">
+  <link rel="stylesheet" href="/css/slick-theme.css">
+  <!-- style.css読み込み -->
+  <link rel="stylesheet" href="./css/style.css">
+  <!-- animate.css -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.6.2/animate.min.css"/>
+
+</head>
+<body>
+  <div class="header__bg" >
+    <header class="header">
+      <div class="header__inner inner">
+        <h1 class="header__title"><a href="index.html">Visit Chino</a></h1>
+        <nav class="header__nav">
+          <ul class="header__lists">
+            <li class="header__list"><a href="#activities">Activities</a></li>
+            <li class="header__list"><a href="#seasons">Seasons</a></li>
+            <li class="header__list"><a href="#access">Access</a></li>
+            <li class="header__list"><a href="trip.html">Trip Ideas</a></li>
+            <li class="header__list"><a href="fireworks.html">Events</a></li>
+          </ul>
+        </nav>
+
+        <div id="js-drawer-icon" class="drawer-icon" onclick="handleClick()">
+          <span class="drawer-icon__bar"></span>
+          <span class="drawer-icon__bar"></span>
+          <span class="drawer-icon__bar"></span>
+        </div>
+        <div id="js-drawer-content" class="drawer-content">
+          <nav class="drawer-content__menu">
+            <a href="#activities" class="drawer-content__link">Activities</a>
+            <a href="#seasons" class="drawer-content__link">Seasons</a>
+            <a href="#access" class="drawer-content__link">Access</a>
+            <a href="trip.html" class="drawer-content__link">Trip Ideas</a>
+            <a href="fireworks.html" class="drawer-content__link">Events</a>
+          </nav>
+        </div>
+      </div>
+    </header>
+    <p class="keyphrase">Discover Your <br class="pc-hidden">Adventure</p>
+  </div>
+
+  <main class="main">
+
+    <section class="introduction">
+      <p class="introduction__title wow fadeIn" data-wow-duration="1s" data-wow-delay="0.2s">
+        What's in Chino City ?
+      </p>
+      <p class="introduction__text wow fadeIn" data-wow-duration="1s" data-wow-delay="0.2s">
+        Nagano Prefecture's Chino City is a naturally abundant area nestled amidst picturesque mountains and clear streams. Visitors can revel in the beauty of nature throughout the four seasons. The city boasts hot spring resorts, offering opportunities for relaxation and rejuvenation. Chino City is also rich in historical landmarks and local culinary delights, providing visitors with a diverse array of attractions to explore and enjoy.
+      </p>
+    </section>
+
+    <section id="activities" class="activities">
+      <div class="activities__inner inner">
+        <h2 class="section__title wow fadeIn" data-wow-duration="1s" data-wow-delay="0.5s">Activities</h2>
+        <ul class="slider wow fadeIn" data-wow-duration="1s" data-wow-delay="0.5s">
+          <li class="slider__item">
+            <img src="./img/activitiy-camp.jpg" alt="スキー画像">
+            <div id="plus-modal-open" class="plus-icon" onclick="test(event)"></div>
+          </li>
+          <li class="slider__item">
+            <img src="./img/activity-ski.jpg" alt="スキー画像">
+            <div id="plus-modal-open" class="plus-icon" onclick="test(event)"></div>
+          </li>
+          <li class="slider__item">
+            <img src="./img/activitiy-camp.jpg" alt="スキー画像">
+            <div id="plus-modal-open" class="plus-icon" onclick="test(event)"></div>
+          </li>
+          <li class="slider__item">
+            <img src="./img/activity-ski.jpg" alt="スキー画像">
+            <div id="plus-modal-open" class="plus-icon" onclick="test(event)"></div>
+          </li>
+        </ul>
+        <!-- modal content -->
+        <div id="modal-bg"></div>
+        <div id="modal-container">
+          <div class="modal__img"><img src="" alt="" id="targetImg"></div>
+          <div class="modal__textarea">
+            <p class="modal__title" id="targetTitle">SKI</p>
+            <p class="modal__text" id="targetText">
+              Nature immersion, outdoor adventure, bonfires, stargazing, bonding, relaxation, and unforgettable memories await at camp.
+            </p>
+          </div>
+          <!-- <span id="plus-modal-close" class="plus-close">CLOSE</span>-->
+          <div id="plus-modal-close" class="plus-close">CLOSE</div>
+        </div>
+
+      </div>
+    </section>
+
+    <section id="seasons" class="seasons">
+      <div class="seasons__inner inner">
+        <h2 class="section__title wow fadeIn" data-wow-duration="1s" data-wow-delay="0.5s">Seasons</h2>
+        <div class="seasons-container">
+          <div class="season wow fadeInRight" data-wow-duration="2s" data-wow-delay="0.2s">
+            <div class="season-container__image">
+              <img src="./img/spring.jpg" alt="春の写真">
+            </div>
+            <div class="season-container__text-box">
+              <p class="season-container__text-title">Spring</p>
+              <p class="season-container__text">
+                Nagano Prefecture's Chino City is a naturally abundant area nestled amidst picturesque mountains and clear streams. Visitors can revel in the beauty of nature throughout the four
+              </p>
+            </div>
+          </div>
+          <div class="season wow fadeInLeft" data-wow-duration="2s" data-wow-delay="0.2s">
+            <div class="season-container__image">
+              <img src="./img/summer.jpg" alt="春の写真">
+            </div>
+            <div class="season-container__text-box">
+              <p class="season-container__text-title">Summer</p>
+              <p class="season-container__text">
+                Summer in Japan is characterized by hot and humid weather. It's a season of vibrant festivals like Tanabata and Obon, where traditional dances and fireworks displays light up the night sky. Many people escape the heat by heading to the mountains or beaches, enjoying activities like hiking, swimming, and summer festivals.
+              </p>
+            </div>
+          </div>
+          <div class="season wow fadeInRight" data-wow-duration="2s" data-wow-delay="0.2s">
+            <div class="season-container__image">
+              <img src="./img/autum.jpg" alt="春の写真">
+            </div>
+            <div class="season-container__text-box">
+              <p class="season-container__text-title">Autumn</p>
+              <p class="season-container__text">
+                Autumn in Japan is famous for its stunning foliage, known as "koyo." The leaves turn vibrant shades of red, orange, and yellow, painting the landscape with breathtaking colors. It's a time for leisurely strolls through parks and gardens, enjoying the crisp air and the beauty of nature. Autumn is also the season for harvest festivals and delicious seasonal foods like chestnuts and mushrooms.
+              </p>
+           </div>
+          </div> 
+          <div class="season wow fadeInLeft" data-wow-duration="2s" data-wow-delay="0.2s"">
+            <div class="season-container__image">
+              <img src="./img/winter.jpg" alt="春の写真">
+            </div>
+            <div class="season-container__text-box">
+              <p class="season-container__text-title">Winter</p>
+              <p class="season-container__text">
+                Winter in Japan brings cold temperatures and sometimes heavy snowfall, especially in the northern regions. It's a season for enjoying winter sports like skiing and snowboarding in popular resorts such as Hokkaido and Nagano. Winter illuminations light up cities, creating a magical atmosphere, and people warm up with hot springs (onsen) and traditional hotpot dishes like nabe.
+              </p>
+            </div>
+          </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  
+    <section id="access" class="access">
+      <div class="sccess__inner inner">
+        <h2 class="section__title">Access</h2>
+        <p class="access__text">Chino City is situated in Nagano Prefecture, Japan, surrounded by scenic mountains and rivers</p>
+        <div class="access__gmap">
+          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d178595.7470895049!2d138.11824721693057!3d36.03015277499781!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x601c4fe3a25c43d7%3A0x3b95b26d7026e048!2z5pel5pys44CB6ZW36YeO55yM6IyF6YeO5biC!5e0!3m2!1sja!2sph!4v1709541566585!5m2!1sja!2sph" width="700" height="200" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+        <div class="access__guide">
+          <div class="access__map"><img src="./img/chinomap.jpeg" alt="茅野市の地図"></div>
+          <div class="access-detail">
+            <p class="access-detail__atten">Public Transportation</p>
+            <p class="access-detail__text">
+              Nagano Prefecture, Chino City, is accessible by a direct train from Tokyo.
+              Take the Limited Express Azusa from Tokyo JR Shinjuku Station for a two-hour journey.
+              Trains depart every hour.
+            </p>
+            <div class="access__flow">
+              <div class="flow">
+                <div class="circle__img"><img src="./img/circle.png" alt=""></div>
+                <p>Narita Airport / Haneda Airport</p>
+              </div>
+              <div class="flow">
+                <div class="circle__img"><img src="./img/circle.png" alt=""></div>
+                <p>Shinjuku Expressway Bus Terminal</p>
+              </div>
+              <div class="flow">
+                <div class="circle__img"><img src="./img/circle.png" alt=""></div>
+                <p>JR.Shinjuku Station</p>
+              </div>
+              <div class="flow">
+                <div class="circle__img"><img src="./img/circle.png" alt=""></div>
+                <p>JR.Chino Station</p>
+              </div>
+            </div>
+            <!-- <ul class="access-detail__station">
+              <li>Narita Airport / Haneda Airport</li>
+              <li>Shinjuku Expressway Busterminal</li>
+              <li>JR Shinjuku Stn.</li>
+              <li>JR Chino Stn.</li>
+            </ul> -->
+          </div>
+        </div>
+      </div>
+    </section>
+
+    
+  
+    <section id="attractions" class="attractions">
+      <div class="attractions__inner inner">
+        <h2 class="section__title attractions__title">More Attraction</h2>
+        <div class="attractions__wrapper">
+          <div class="attractions-item">
+            <p class="more">Find More</p>
+            <div class="attractions-item__imgbox imgbox1">
+              <a href="trip.html">Trip Idea</a>
+            </div>
+          </div>
+          <div class="attractions-item">
+            <p class="more">Find More</p>
+            <div class="attractions-item__imgbox imgbox2">
+              <a href="fireworks.html">Events</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+  
+  
+  <!-- <div class="top-btn"><a href="#">TOP</a></div> -->
+  <!-- <buttom><a href="#" class="top-btn">TOP</a></div> -->
+  
+
+  <footer class="footer">	
+    <div class="footer__inner inner">
+      <div class="footer__container">
+        <div class="footer-left">
+          <ul class="footer__lists">
+            <li class="footer__list"><a href="#activities">Activities</a></li>
+            <li class="footer__list"><a href="#seasons">Seasons</a></li>
+            <li class="footer__list"><a href="#access">Access</a></li>
+            <li class="footer__list"><a href="trip.html">Trip Ideas</a></li>
+            <li class="footer__list"><a href="fireworks.html">Events</a></li>
+          </ul>
+        </div>
+        <div class="footer-right">
+          <div class="footer__sns">
+            <a href="#"><img src="./img/facebook-icon.png" alt=""></a>
+          </div>
+          <div class="footer__sns">
+            <a href="#"><img src="./img/twitter-icon.png" alt=""></a>
+          </div>
+          <div class="footer__sns">
+            <a href="#"><img src="./img/sms-icon.png" alt=""></a>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <!-- トップに戻るボタン -->
+  <a href="#" id="js-top-btn" class="top-btn">TOP</a>
+  
+
+  <!-- jQuery CDN読み込み -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  <!-- slick読み込み -->
+  <script src="./js/slick.min.js"></script>
+  <!-- jsフォルダの読み込み -->
+  <script src="./js/script.js"></script>
+  <!-- wow.js CDNの読み込み -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js"></script>
+  <script>
+    // new WOW().init();
+    // スマホ時には適用しない場合の記述
+    if(!navigator.userAgent.match(/(iPhone|iPad|iPod|Android)/)){new WOW().init();}
+  </script>
+</body>
+</html>
+
+

@@ -1,0 +1,873 @@
+@use "parts";
+@use "breakpoints";
+
+// ---------common----------------------------
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  line-height: parts.$line-hight-base;
+  font-family: parts.$font-family-base;
+  font-size: parts.$font-size-base;
+  margin: 0 auto;
+  position: relative;
+}
+.inner {
+  max-width: parts.$width-inner; //1080px設定
+  // width: 1080px;
+  padding-inline: 10px;
+  margin-inline: auto;
+}
+section{
+  padding-block: 100px;
+  @include breakpoints.mq(sp) {
+   padding-block: 30px; 
+  }
+}
+.section__title {
+  font-size: 50px;
+  text-align: center;
+  margin-bottom: 100px;
+  
+  @include breakpoints.mq(sp) {
+    margin-bottom: 30px;
+   font-size: 40px; 
+  }
+}
+a {
+  text-decoration: none;
+  color: #000000;
+}
+img {
+  width: 100%;
+}
+.pc-hidden{
+  display: none;
+  @include breakpoints.mq(sp) {
+   display: block; 
+  }
+}
+// ----------------------------------------
+
+// -----header-----------------------
+.header__bg {
+  background-image: url(../img/mainvisual.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  width: 100vw;
+  height: 100vh;
+  position: relative;
+
+  @include breakpoints.mq(pc) {
+  //  margin-bottom: 30px; 
+  }
+}
+.header {
+  position: fixed;
+  width: 100%;
+  z-index: 1;
+  background-color: rgba(255, 255, 255, 0.3);
+  box-shadow: inset 0px 0px 10px 0px rgba(0, 0, 0, 0.3);
+}
+.header__inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header__title {
+  a {
+    text-decoration: none;
+    color: #000000;
+    font-size: 30px;
+  }
+}
+
+.header__nav {
+ @include breakpoints.mq(pc-lg) {
+  display: none;
+ }
+}
+
+.header__lists{
+  display: flex;
+  gap: 20px;
+  max-width: 1080px;
+  list-style: none;
+}
+
+.header__list{
+  // margin-bottom:20px;
+  
+  a {
+    position: relative;
+    text-decoration: none;
+    color: #000000;
+    font-size: 20px;
+    padding: 6px;
+    border-radius: 5px;
+    transition: all 0.5s 0s ease;/*transitionの記述を追加*/
+
+
+    &::after {
+      content: '';
+      /*絶対配置で線の位置を決める*/
+      position: absolute;
+      bottom: 0;
+      left: 10%;
+      /*線の形状*/
+      width: 80%;
+      height: 1px;
+      // background:#0481A2;
+      background-color: #000000;
+      /*アニメーションの指定*/
+      transition: all .3s;
+      transform: scale(0, 1);/*X方向0、Y方向1*/
+      transform-origin: center top;/*上部中央基点*/
+    }
+    
+    &:hover {
+      opacity: 50%;
+
+      &::after{
+        transform: scale(1, 1);
+      }
+    }
+  }
+}
+.keyphrase {
+  text-align: center;
+  white-space: nowrap;
+  position: absolute;
+  font-family: parts.$font-family-title;
+  font-size: 60px;
+  padding: 5px 20px;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -webkit-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+
+  @include breakpoints.mq(pc-lg) {
+   font-size: 30; 
+   
+  }
+}
+
+// drawer-icon
+.drawer-icon {
+  display: none;
+  width: 36px;
+  height: 21px;
+  position: relative;
+  z-index: 51 ;
+
+  @include breakpoints.mq(pc-lg) {
+    display: block; 
+  }
+
+  &.is-checked {
+    .drawer-icon__bar {
+
+      &:nth-of-type(1){
+        transform: rotate(30deg);
+        top: 10px;
+
+      }
+
+      &:nth-of-type(2){
+        display: none;
+      }
+
+      &:nth-of-type(3){
+        transform: rotate(-30deg);
+        top: 10px;
+      }
+    }
+  }
+}
+
+.drawer-icon__bar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 36px;
+  height: 3px;
+  border-radius: 6px;
+  background: #111;
+  transition: transform 0.3s linear, top 0.3s linear;
+
+  &:nth-of-type(1){}
+  
+  &:nth-of-type(2){
+    top: 9px;
+  }
+  &:nth-of-type(3){
+    top: 18px;
+  }
+}
+// .drawer-content
+.drawer-content {
+  width: 200px;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  right: 0;
+  z-index: 99;
+  // background-color: rgba(255,255,255,0.45);
+  background: rgba(0,0,0,0.5);
+  z-index: 50;
+  padding: 86px 40px 40px;
+  transform: translateX(100%);
+  transition: transform 0.3s linear;
+
+  &.is-checked {
+    transform: translateX(0);
+  }
+}
+.drawer-content__menu {
+  display: flex;
+  flex-direction: column;
+  align-items: end;
+  gap: 20px;
+
+  a {
+    color: #ffffff;
+    width: 100px;
+    
+  }
+}
+
+
+
+//---introduction-----------------------------
+.introduction {
+  text-align: center;
+  
+
+  @include breakpoints.mq(sp) {
+  
+  }
+}
+
+.introduction__title{
+  font-size: 60px;
+  margin-bottom: 40px;
+
+  @include breakpoints.mq(sp) {
+   font-size: 30px; 
+  }
+}
+
+.introduction__text {
+  font-size: 14px;
+  line-height: 2.5;
+  width: 85%;
+  margin-inline: auto ;
+
+  @include breakpoints.mq(sp) {
+  line-height: 1.7;
+  }
+}
+
+//---activities-----------------------------
+.activities {
+  background-color: parts.$bg-gray;
+}
+.slider {
+  position: relative;
+  // z-index: -1;
+}
+.slider__item {
+  width: 500px;
+  padding-inline: 10px;
+  position: relative;
+  transition-duration:0.5s;
+
+  &:hover {
+    scale: 0.9;
+    opacity: 0.8;
+  }
+ 
+
+  img {
+    width: 100%;
+    // position: relative;
+  }
+
+}
+.slick-arrow{
+  position: absolute;
+  top: 50%;
+  margin-top: -16px;
+  width: 40px;
+  height: 40px;
+  // opacity:0.7;
+  z-index:10;
+  color: #000000;
+}
+.prev-arrow{
+	left: 5px;
+}
+.next-arrow{
+	right: 5px;
+}
+
+.plus-icon {
+  display: inline-block;
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(255, 255, 255, 0.6);
+  // background-color: rgba(0, 0, 0, 0.3);
+
+  margin-right: 10px;
+  transition: all 0.5s 0s ease;
+  
+  &:hover {
+    scale: 1.2;
+    cursor: pointer;
+  }
+
+  &::before {
+    position: absolute;
+    content: "";
+    width: 20px;
+    height: 1px;
+    background-color: #000000;
+    // background-color: #ffffff;
+
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -webkit-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+  }
+  &::after {
+    position: absolute;
+    content: "";
+    width: 1px;
+    height: 20px;
+    background-color: #000000;
+    // background-color: #ffffff;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -webkit-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+
+  }
+  
+}
+
+//---seasons-----------------------------
+.seasons {}
+
+.seasons__inner {}
+
+.seasons-container > div{
+  &:not(:last-of-type){
+    margin-bottom: 120px;
+
+    @include breakpoints.mq(sp) {
+     margin-bottom: 60px; 
+    }
+  }
+}
+.season {
+  display: flex;
+  justify-content: space-between;
+
+  @include breakpoints.mq(sp) {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  &:nth-of-type(even) {
+    flex-direction: row-reverse;
+
+    @include breakpoints.mq(pc) {
+     flex-direction: column; 
+    }
+  }
+
+
+}
+
+.season-container__image {
+  width: 48%;
+
+  @include breakpoints.mq(sp) {
+    width: 100%;
+  }
+
+  img {
+    box-shadow: 0px 5px 15px 0px rgba(0, 0, 0, 0.60);
+  }
+}
+
+.season-container__text-box {
+  width: 48%;
+
+  @include breakpoints.mq(sp) {
+   width: 100%;
+   text-align: center; 
+  }
+}
+
+.season-container__text-title {
+  font-size: 40px;
+  font-weight: normal;
+  // padding-left: 30px;
+}
+.season-container__text {
+  font-size: 17px;
+  @include breakpoints.mq(sp) {
+   font-size: 12px; 
+  }
+}
+
+// モーダル
+
+#modal-bg {
+  display: none;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  z-index: 1;
+  
+  @include breakpoints.mq(sp) {
+   z-index: 50; 
+  }
+
+  &.is-active {
+    display: block;
+  }
+}
+
+#modal-container {
+  display: none;
+  position: fixed;
+  width: 80%;
+  height: 50%;
+  display: none;
+  top: 200px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #fff;
+  box-shadow: 0 0 10px;
+  padding: 20px;
+  z-index: 100;
+
+
+
+  @include breakpoints.mq(sp) {
+    flex-direction: column;
+    justify-content: start;
+    width: 80%;
+    height: initial;
+    gap: 0; 
+    top: 50px;
+    padding: initial;
+    padding: 10px 10px 50px 10px;
+  }
+
+  
+
+  &.is-active {
+    display: flex;
+    
+    gap: 20px;
+  }
+}
+
+
+.modal__img {
+  // height: 100%;
+  width: 60%;
+  height: 100%;
+  align-self: center;
+
+
+  @include breakpoints.mq(sp) {
+   width: 100%; 
+   height: auto;
+  }
+
+  img {
+    height: 100%;
+    object-fit: cover;
+  }
+}
+.modal__textarea {
+  width: 40%;
+
+  @include breakpoints.mq(sp) {
+   width: 100%; 
+   padding: 0;
+  }
+}
+.modal__title {
+  text-align: center;
+  font-size: 40px;
+}
+.modal__text {
+  @include breakpoints.mq(sp) {
+  font-size: 12px;
+  }
+}
+#plus-modal-close {
+  position: absolute;
+  right: 30px;
+  bottom: 30px;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: #ffffff ;
+  padding-block: 3px;
+  padding-inline: 15px;
+  border-radius: 20px;
+
+  @include breakpoints.mq(sp) {
+   right: initial;
+   left: 50%;
+   transform: translateX(-50%);
+   bottom: 10px;
+  }
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+
+//---access-----------------------------
+.access {
+  background-color: parts.$bg-gray;
+}
+.access__guide {
+  display: flex;
+  justify-content: space-between;
+  gap: 50px;
+  padding: 15px;
+
+  @include breakpoints.mq(pc) {
+   flex-direction: column;
+   align-items: center; 
+  }
+}
+.access__map {
+  width: 50%;
+
+  @include breakpoints.mq(sp) {
+   width: 100%; 
+  }
+}
+.access__text{
+  text-align: center;
+  margin-bottom: 50px;
+}
+.access__gmap {
+  text-align: center;
+  margin-bottom: 50px;
+  
+  iframe {
+    width: 100%;
+    height: 300px;
+  }
+}
+
+.access__flow {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+.flow {
+  display: flex;
+  align-items: normal;
+  gap: 10px;
+}
+
+.circle__img {
+  position: relative;
+  width: 10px;
+  height: 10px;
+
+  &::after {
+    position: absolute;
+    content: "";
+    width: 1px;
+    height: 48px;
+    background-color: gray;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}
+
+.flow:last-of-type .circle__img::after{
+  content: none;
+}
+
+.access-detail {
+  width: 50%;
+
+  @include breakpoints.mq(sp) {
+    width: 100%; 
+   }
+}
+.access-detail__atten {
+  position: relative;
+  font-size: 30px;
+  
+
+  &::after {
+    content: '';
+    width: 100%;
+    height: 1px;
+    display: inline-block;
+    background-color: #000000;
+    position: absolute;
+    bottom:0;
+    left: 0;
+  }
+}
+.access-detail__text {
+  padding-bottom: 20px;
+}
+.access-detail__station {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  list-style: none;
+
+  li {
+    position: relative;
+    width: 80%;
+    background-color: #ffffff;
+    padding: 3px;
+
+    @include breakpoints.mq(sp) {
+     width: 100%;
+    }
+
+    &:not(:last-child)::after{
+    position: absolute;
+    content: "▼";
+    width: 10px;
+    height: 10px;
+    display: inline-block;
+    top: 40px;
+    left: 50%;
+    font-size: 10px;
+    }
+
+  }
+}
+
+
+//---attractions-----------------------------
+.attractions__title {
+  margin-bottom: 50px;
+}
+.attractions__wrapper {
+  display: flex;
+  justify-content: center;
+  gap: 50px;
+
+  @include breakpoints.mq(pc) {
+   gap: 20px; 
+  }
+}
+
+.attractions-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 60px;
+  // width: 40%;
+}
+
+.more {
+  position: relative;
+
+  &::before {
+    content: "▼";
+    width: 10px;
+    height: 10px;
+    position: absolute;
+    top: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}
+
+.attractions-item__imgbox {
+  position: relative;
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;;
+  color: #ffffff;
+  transition: all 0.5s 0s ease;/*transitionの記述を追加*/
+
+  &:hover {
+    opacity: 0.8;
+    scale: 0.9;
+   }
+
+  @include breakpoints.mq(sp) {
+   width: 150px;
+   height: 150px; 
+  }
+
+  a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    color: #ffffff;
+    font-size: 30px;
+
+    @include breakpoints.mq(sp) {
+     font-size: 20px; 
+    }
+  }
+}
+.imgbox1 {
+  background-image: url(../img/lightbulb-small.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+.imgbox2 {
+  background-image: url(../img/firework/firework-small.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+//----footer-----------------------------
+.footer {
+  position: relative;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  background-color: #000000;
+}
+.footer__container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 60px;
+
+  @include breakpoints.mq(sp) {
+   flex-direction: column; 
+   gap: 10px;
+  }
+}
+
+.footer__lists {
+  display: flex;
+  gap: 14px;
+  list-style: none;
+  font-size: 14px;
+}
+.footer__list {
+
+  a {
+    position: relative;
+    color: #ffffff;
+    padding-bottom: 10px;
+    // transition: all 0.5s 0s ease;/*transitionの記述を追加*/
+
+    &::after {
+      content: '';
+      /*絶対配置で線の位置を決める*/
+      position: absolute;
+      bottom: 0;
+      left: 10%;
+      /*線の形状*/
+      width: 80%;
+      height: 1px;
+      // background:#0481A2;
+      background-color: #ffffff;
+      /*アニメーションの指定*/
+      transition: all .3s;
+      transform: scale(0, 1);/*X方向0、Y方向1*/
+      transform-origin: center top;/*上部中央基点*/
+
+    }
+    &:hover::after {
+      transform: scale(1, 1);/*X方向0、Y方向1*/
+    }
+  }
+}
+
+
+
+.footer-right {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+}
+.footer__sns {
+  width: 30px;
+  height: 30px;
+}
+
+
+// ----top button-----------------------------
+.top-btn {
+  position: relative;
+  position: fixed;
+  right: 50px;
+  bottom: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #ffffff;
+  line-height: 1;
+  text-decoration: none;
+  color: #ffffff;
+  font-size: 12px;
+  border-radius: 50px;
+  width: 100px;
+  height: 100px;
+  font-weight: bold;
+  border: 1px solid #ffffff;
+  transition: 0.3s;
+  box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.5);
+  background-image: linear-gradient(180deg, rgba(0, 0, 0, 1) 0%);
+  opacity: 0.7;
+
+  @include breakpoints.mq(sp) {
+    display: none!important;
+  //  width: 70px;
+  //  height: 70px;
+  //  right: 20px;
+  //  bottom: 100px;
+  }
+
+  &::after {
+    position: absolute;
+    content:"▲";
+    font-size: 5px;
+    top: 25px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  &:hover {
+    transform: translateY(2px);
+    box-shadow: 0 0 rgba(0, 0, 0, 0);
+  }
+}
